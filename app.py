@@ -30,6 +30,14 @@ def add_user():
     db.session.commit()
     return jsonify({'message': 'User added successfully'}), 201
 
+# Route pour ajouter un utilisateur via un get (pour les tests)
+@app.route('/add_user_get/<name>', methods=['GET'])
+def add_user_get(name):
+    new_user = User(name=name)
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({'message': 'User added successfully'}), 201
+
 # Route pour lister tous les utilisateurs
 @app.route('/users/', methods=['GET'])
 def list_users():
